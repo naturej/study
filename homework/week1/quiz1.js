@@ -15,7 +15,9 @@
     }
 */
 const maxValue = (arr) => {
-  arr.sort().reverse();
+  arr.sort((a,b)=>{
+    return b-a;
+  });
   const result = {
     maxValue: arr[0],
     sortArr: arr,
@@ -23,5 +25,5 @@ const maxValue = (arr) => {
   return result;
 };
 
-const a = maxValue([1, 2, 3, 4, 5]);
+const a = maxValue([1, 12, 31, 4, 5]);
 console.log(a);
