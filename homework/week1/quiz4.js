@@ -19,7 +19,7 @@
   [2,3]
   [짝수의 개수, 홀수의 개수]
 */
-solution = (arr) => {
+const solution = (arr) => {
   let [even, odd] = [0, 0];
   for (let i = 0; i < arr.length; i++) {
     arr[i] % 2 === 0 ? even++ : odd++;

@@ -26,7 +26,7 @@
     ”전산표와 일치하지 않습니다.“ (불일치) 
     ”바사삭치킨“ (품목 없음)
 */
-productCountCheck = (product, count) => {
+const productCountCheck = (product, count) => {
   const menu = {
     야채곱창: 5,
     바나나우유: 10,

@@ -28,7 +28,7 @@
   [12,13,14,15] ( 값 있음 ) 
   ”결과값이 없습니다“ ( 값 없음 )
 */
-arrCheck = (arr, num) => {
+const arrCheck = (arr, num) => {
   const arr2 = arr.map((index) => {
     return index + 10;
   });
