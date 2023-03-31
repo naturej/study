@@ -25,18 +25,6 @@
   7. 시동이 걸려있는 상태에서 시동을 다시 걸 수 없습니다.
   8. 시동이 꺼져있는 상태에서 시동을 다시 끌 수 없습니다. 
 */
-// 객체 생성
-const Car = {
-  isStarted: false,
-  maxDistance: 40,
-  driveDistance: 0,
-};
-
-const MyCar = {
-  isStarted: false,
-  maxDistance: 10,
-  driveDistance: 0,
-};
 
 // 함수 정의
 function start() {
@@ -52,37 +40,47 @@ function end() {
 }
 
 function drive(distance) {
-  if (!this.isStarted) return console.log("시동이 꺼져있습니다.");
+  if (!this.isStarted)
+    return console.log("시동이 꺼져 있어 주행할 수 없습니다.");
   for (let i = 0; i < distance; i++) {
     this.driveDistance += 1;
     if (this.driveDistance > this.maxDistance) {
       this.end();
       return console.log("안전 위험으로 시동을 종료했습니다");
     }
-    console.log(`${this.driveDistance}km 주행중...`);
+    console.log(`${this.driveDistance}km 주행 중...`);
     if (this.driveDistance === this.maxDistance) {
       console.log("주행이 완료되었습니다");
     }
   }
 }
 
-// 함수를 각각의 객체에 할당
-Car.start = start;
-Car.end = end;
-Car.drive = drive;
+// 오브젝트 반환하는 함수 정의
+function car(maxDistance) {
+  const Car = {
+    isStarted: false,
+    maxDistance: maxDistance,
+    driveDistance: 0,
+  };
 
-MyCar.start = start;
-MyCar.end = end;
-MyCar.drive = drive;
+  Car.start = start;
+  Car.end = end;
+  Car.drive = drive;
+
+  return Car;
+}
 
 // 함수 실행
-console.log("--- Car 운행 시작 ---");
-Car.start();
-Car.start();
-Car.drive(30);
-Car.drive(11);
-Car.end();
-console.log("--- MyCar 운행 시작---");
-MyCar.start();
-MyCar.drive(15);
-MyCar.end();
+console.log("--- 대형차 운행 시작 ---");
+const largeCar = car(40);
+largeCar.start();
+largeCar.start();
+largeCar.drive(30);
+largeCar.drive(11);
+largeCar.end();
+
+console.log("--- 소형차 운행 시작 ---");
+const smallCar = car(10);
+smallCar.start();
+smallCar.drive(15);
+smallCar.end();
