@@ -25,38 +25,64 @@
   7. 시동이 걸려있는 상태에서 시동을 다시 걸 수 없습니다.
   8. 시동이 꺼져있는 상태에서 시동을 다시 끌 수 없습니다. 
 */
-let flag = 0;
-const maxDistance = 40;
-let driveDistance = 0;
-const car = {
-  on() {
-    if (flag === 0) {
-      console.log("시동이 걸렸습니다");
-      flag = 1;
-    }
-  },
-  off() {
-    if (flag === 1) {
-      console.log("시동이 꺼졌습니다");
-      flag = 0;
-    }
-  },
-  drive(distance) {
-    if (flag === 0) return console.log("시동이 꺼져있습니다.");
-    for (let i = 0; i < distance; i++) {
-      driveDistance += 1;
-      if (driveDistance > maxDistance) {
-        this.off();
-        return console.log("안전 위험으로 시동을 종료했습니다");
-      }
-      console.log(`${driveDistance}km 주행중...`);
-      if (driveDistance === maxDistance) {
-        console.log("주행이 완료되었습니다");
-      }
-    }
-  },
+// 객체 생성
+const Car = {
+  isStarted: false,
+  maxDistance: 40,
+  driveDistance: 0,
 };
 
-car.on();
-car.drive(30);
-car.drive(10);
+const MyCar = {
+  isStarted: false,
+  maxDistance: 10,
+  driveDistance: 0,
+};
+
+// 함수 정의
+function start() {
+  if (this.isStarted) return console.log("시동이 이미 켜져있습니다.");
+  console.log("시동이 켜졌습니다.");
+  this.isStarted = true;
+}
+
+function end() {
+  if (!this.isStarted) return console.log("시동이 이미 꺼져있습니다.");
+  console.log("시동이 꺼졌습니다.");
+  this.isStarted = false;
+}
+
+function drive(distance) {
+  if (!this.isStarted) return console.log("시동이 꺼져있습니다.");
+  for (let i = 0; i < distance; i++) {
+    this.driveDistance += 1;
+    if (this.driveDistance > this.maxDistance) {
+      this.end();
+      return console.log("안전 위험으로 시동을 종료했습니다");
+    }
+    console.log(`${this.driveDistance}km 주행중...`);
+    if (this.driveDistance === this.maxDistance) {
+      console.log("주행이 완료되었습니다");
+    }
+  }
+}
+
+// 함수를 각각의 객체에 할당
+Car.start = start;
+Car.end = end;
+Car.drive = drive;
+
+MyCar.start = start;
+MyCar.end = end;
+MyCar.drive = drive;
+
+// 함수 실행
+console.log("--- Car 운행 시작 ---");
+Car.start();
+Car.start();
+Car.drive(30);
+Car.drive(11);
+Car.end();
+console.log("--- MyCar 운행 시작---");
+MyCar.start();
+MyCar.drive(15);
+MyCar.end();
