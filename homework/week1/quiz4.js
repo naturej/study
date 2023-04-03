@@ -20,12 +20,12 @@
   [짝수의 개수, 홀수의 개수]
 */
 const solution = (arr) => {
-  let [even, odd] = [0, 0];
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] % 2 === 0 ? even++ : odd++;
-  }
-  return [even, odd];
-};
+  const result = arr.reduce((acc, cur) => {
+    cur % 2 === 0 ? acc[0]++ : acc[1]++;
+    return acc;
+  }, [0,0]);
+  return result;
+}
 
 const arr = [1, 2, 3, 4, 5];
 const a = solution(arr);

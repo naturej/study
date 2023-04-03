@@ -29,13 +29,15 @@
   ”결과값이 없습니다“ ( 값 없음 )
 */
 const arrCheck = (arr, num) => {
-  const arr2 = arr.map((index) => {
-    return index + 10;
-  });
-  const index = arr2.indexOf(num);
+  const resultArr = arr.reduce((acc, cur) => {
+    acc.push(cur + 10);
+    return acc;
+  },[]) 
+
+  const index = resultArr.indexOf(num);
   if (index < 0) return "결과값이 없습니다.";
-  arr2.splice(index, 1);
-  return arr2;
+  resultArr.splice(index, 1);
+  return resultArr;
 };
 
 const arr = [1, 2, 3, 4, 5];
