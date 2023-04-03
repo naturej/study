@@ -26,61 +26,45 @@
   8. 시동이 꺼져있는 상태에서 시동을 다시 끌 수 없습니다. 
 */
 
-// 함수 정의
-function start() {
-  if (this.isStarted) return console.log("시동이 이미 켜져있습니다.");
-  console.log("시동이 켜졌습니다.");
-  this.isStarted = true;
-}
-
-function end() {
-  if (!this.isStarted) return console.log("시동이 이미 꺼져있습니다.");
-  console.log("시동이 꺼졌습니다.");
-  this.isStarted = false;
-}
-
-function drive(distance) {
-  if (!this.isStarted)
-    return console.log("시동이 꺼져 있어 주행할 수 없습니다.");
-  for (let i = 0; i < distance; i++) {
-    this.driveDistance += 1;
-    if (this.driveDistance > this.maxDistance) {
-      this.end();
-      return console.log("안전 위험으로 시동을 종료했습니다");
-    }
-    console.log(`${this.driveDistance}km 주행 중...`);
-    if (this.driveDistance === this.maxDistance) {
-      console.log("주행이 완료되었습니다");
-    }
-  }
-}
-
 // 오브젝트 반환하는 함수 정의
 function car(maxDistance) {
-  const Car = {
-    isStarted: false,
-    maxDistance: maxDistance,
-    driveDistance: 0,
-  };
+  let isStarted = false;
+  let driveDistance = 0;
 
-  Car.start = start;
-  Car.end = end;
-  Car.drive = drive;
+  function start() {
+    if (isStarted) return console.log("시동이 이미 켜져있습니다.");
+    console.log("시동이 켜졌습니다.");
+    isStarted = true;
+  }
+  
+  function end() {
+    if (!isStarted) return console.log("시동이 이미 꺼져있습니다.");
+    console.log("시동이 꺼졌습니다.");
+    isStarted = false;
+  }
+  
+  function drive(distance) {
+    if (!isStarted) return console.log("시동이 꺼져 있어 주행할 수 없습니다.");
+    for (let i = 0; i < distance; i++) {
+      driveDistance += 1;
+      if (driveDistance > maxDistance) {
+        this.end();
+        return console.log("안전 위험으로 시동을 종료했습니다");
+      }
+      console.log(`🚗 ${driveDistance}km 주행 중...`);
+      if (driveDistance === maxDistance) {
+        console.log("주행이 완료되었습니다");
+      }
+    }
+  }
 
-  return Car;
+  return { start, end, drive };
 }
 
 // 함수 실행
-console.log("--- 대형차 운행 시작 ---");
-const largeCar = car(40);
-largeCar.start();
-largeCar.start();
-largeCar.drive(30);
-largeCar.drive(11);
-largeCar.end();
-
-console.log("--- 소형차 운행 시작 ---");
-const smallCar = car(10);
-smallCar.start();
-smallCar.drive(15);
-smallCar.end();
+const oldCar = car(40);
+oldCar.start();
+oldCar.start();
+oldCar.drive(30);
+oldCar.drive(11);
+oldCar.end();
