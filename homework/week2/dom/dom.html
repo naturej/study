@@ -28,6 +28,19 @@
         border: 1px solid #ededed;
       }
 
+      .tab.active {
+        color: #EB5757;
+        background-color: #ededeb;
+      }
+
+      .tab_body > .tab_content {
+        display: none;
+      }
+
+      .tab_body > .tab_content.block {
+        display: block;
+      }
+
       #list {
         border: 1px solid #ededed;
       }
@@ -43,23 +56,55 @@
 
       <p>2.탭을 선택하면 선택한 탭의 배경과 글자의색이 바뀌도록 하시오</p>
       <div class="tab_host">
-        <div class="tab">탭1</div>
-        <div class="tab">탭2</div>
-        <div class="tab">탭3</div>
-        <div class="tab">탭4</div>
-        <div class="tab">탭5</div>
+        <div class="tab active" data-tab-id="1">탭1</div>
+        <div class="tab" data-tab-id="2">탭2</div>
+        <div class="tab" data-tab-id="3">탭3</div>
+        <div class="tab" data-tab-id="4">탭4</div>
+        <div class="tab" data-tab-id="5">탭5</div>
       </div>
 
       <p>
         3. 위의 탭 클릭시 아래의 컨텐츠중 탭과 숫자가 같은 것만 보이게 하시오.
       </p>
       <div class="tab_body">
-        <div class="block">탭1 컨텐츠</div>
-        <div class="block">탭3 컨텐츠</div>
-        <div class="block">탭2 컨텐츠</div>
-        <div class="block">탭5 컨텐츠</div>
-        <div class="block">탭4 컨텐츠</div>
+        <div class="tab_content block" data-tab-content-id="1">탭1 컨텐츠</div>
+        <div class="tab_content" data-tab-content-id="3">탭3 컨텐츠</div>
+        <div class="tab_content" data-tab-content-id="2">탭2 컨텐츠</div>
+        <div class="tab_content" data-tab-content-id="5">탭5 컨텐츠</div>
+        <div class="tab_content" data-tab-content-id="4">탭4 컨텐츠</div>
       </div>
     </div>
   </body>
+  <script>
+    let $tabs, $tabContents;
+    
+    // 페이지 로딩 시
+    window.onload = function(){
+        const $display = document.getElementById('display');
+        $display.innerText = '변경';
+
+        $tabs = document.querySelectorAll('.tab');
+        $tabContents = document.querySelectorAll('.tab_content');
+        
+        $tabs.forEach((tab) => {
+          tab.addEventListener('click', onClickTab);
+        });
+    }
+    
+    // 탭 클릭 이벤트
+    function onClickTab(){
+      const tabId = this.dataset["tabId"];
+      const $tabContent = document.querySelector(`[data-tab-content-id='${tabId}']`);
+
+      $tabs.forEach((tab) => {
+        tab.classList.remove("active");
+      });
+      this.classList.add("active");
+
+      $tabContents.forEach((tabContent) => {
+        tabContent.classList.remove("block");
+      });
+      $tabContent.classList.add("block");
+    }
+  </script>
 </html>
