@@ -7,8 +7,21 @@
   변수 e는 main함수의 최종 반환 값으로 향후 다른 함수에서 재사용된다.
 */
 
-function solution() {}
-function parse() {}
+let b = document.getElementById("");
+b.addEventListener("click", parse);
+let e = "";
+
+function solution(c) {
+  let d = c;
+	return d;
+}
+
+function parse() {
+
+}
+
 function main() {
-  solution();
+	let a = "";
+  e = solution(a);
+	return e;
 }

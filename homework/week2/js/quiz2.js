@@ -7,4 +7,14 @@
       ex) [1...80] => [[1...5], [6...10], [11...15], ... , [76...80]]
 */
 
-function division() {}
+function division(arr, len) {
+  let result = []
+  for(let i = 0; i< arr.length; i += len) {
+    result.push(arr.slice(i, i + len));
+  }
+  return result;
+}
+
+const arr = Array(80).fill().map((el, index) => index + 1);
+const result = division(arr, 5);
+console.log(result);
