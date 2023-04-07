@@ -12,9 +12,29 @@
   <body>
     <div class="book-list-wrap mt-20 mx-auto">
       <h2 class="mb-6 text-xl font-semibold">일반도서 신간</h2>
-      <ul id="book-list" class="p-6 grid grid-cols-5 gap-x-20 gap-y-12">
-        <!-- book list -->
-      </ul>
+      <div class="p-6">
+        <div class="btn-list flex justify-end mb-5">
+          <button
+            class="bg-transparent hover:bg-slate-50 text-sm text-slate-600 mx-1 py-1 px-2 border border-slate-300 rounded"
+            type="button"
+            id="btn-delete"
+          >
+            삭제
+          </button>
+        </div>
+        <ul id="book-list" class="grid grid-cols-5 gap-x-20 gap-y-12">
+          <!-- book list -->
+        </ul>
+        <div class="flex justify-center mt-10">
+          <button
+            class="bg-transparent hover:bg-slate-50 text-sm text-slate-600 py-2 px-10 border border-slate-300 rounded"
+            type="button"
+            id="btn-more"
+          >
+            더보기
+          </button>
+        </div>
+      </div>
     </div>
   </body>
 </html>

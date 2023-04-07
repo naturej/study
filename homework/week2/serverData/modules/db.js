@@ -1,7 +1,6 @@
 export default [
   {
     id: 222002958,
-    rank: 1,
     thumbnail: {
       imgUrl: "https://img.ridicdn.net/cover/222002958/large#1",
     },
@@ -24,7 +23,6 @@ export default [
   },
   {
     id: 754037675,
-    rank: 2,
     thumbnail: {
       imgUrl: "https://img.ridicdn.net/cover/754037675/large#1",
     },
@@ -42,13 +40,12 @@ export default [
       buyPrice: 13000,
     },
     starRate: {
-      score: 88,
-      participantCount: 5,
+      score: 100,
+      participantCount: 2,
     },
   },
   {
     id: 593001019,
-    rank: 3,
     thumbnail: {
       imgUrl: "https://img.ridicdn.net/cover/593001019/large#1",
     },
@@ -59,7 +56,7 @@ export default [
         username: "마이클 샌델",
       },
     ],
-    publisher: "부키",
+    publisher: "와이즈베리",
     genre: "인문",
     price: {
       buyPrice: 12600,
@@ -72,7 +69,6 @@ export default [
   },
   {
     id: 5148000002,
-    rank: 4,
     thumbnail: {
       imgUrl: "https://img.ridicdn.net/cover/5148000002/large#1",
     },
@@ -98,7 +94,6 @@ export default [
   },
   {
     id: 111044700,
-    rank: 5,
     thumbnail: {
       imgUrl: "https://img.ridicdn.net/cover/111044700/large#1",
     },
@@ -148,5 +143,159 @@ export default [
       participantCount: 0,
     },
     setBook: 9,
+  },
+  {
+    id: 852001634,
+    thumbnail: {
+      imgUrl: "https://img.ridicdn.net/cover/852001634/large#1",
+    },
+    title: "4.3, 19470301-19540921",
+    author: [
+      {
+        id: 135564,
+        username: "허호준",
+      },
+    ],
+    publisher: "혜화1117",
+    genre: "역사",
+    price: {
+      buyPrice: 14490,
+    },
+    starRate: {
+      score: 100,
+      participantCount: 1,
+    },
+  },
+  {
+    id: 1546001056,
+    thumbnail: {
+      imgUrl: "https://img.ridicdn.net/cover/1546001056/large#1",
+    },
+    title: "말랑말랑 생각법",
+    author: [
+      {
+        id: 135599,
+        username: "한명수",
+      },
+    ],
+    publisher: "김영사",
+    genre: "기획/창의/리더십",
+    price: {
+      buyPrice: 10800,
+    },
+    starRate: {
+      score: 100,
+      participantCount: 2,
+    },
+  },
+  {
+    id: 4671000015,
+    thumbnail: {
+      imgUrl: "https://img.ridicdn.net/cover/4671000015/large#1",
+    },
+    title: "부활의 의미",
+    author: [
+      {
+        username: "폴라 구더",
+      },
+    ],
+    publisher: "도서출판 학영",
+    genre: "기독교(개신교)",
+    price: {
+      buyPrice: 9800,
+    },
+    starRate: {
+      score: 100,
+      participantCount: 1,
+    },
+  },
+  {
+    id: 4139000055,
+    thumbnail: {
+      imgUrl: "https://img.ridicdn.net/cover/4139000055/large#1",
+    },
+    title: "이미 시작된 전쟁",
+    author: [
+      {
+        username: "이철",
+      },
+    ],
+    publisher: "페이지2북스",
+    genre: "정치/사회",
+    price: {
+      buyPrice: 14000,
+    },
+    starRate: {
+      score: 0,
+      participantCount: 0,
+    },
+  },
+  {
+    id: 4803002139,
+    thumbnail: {
+      imgUrl: "https://img.ridicdn.net/cover/4803002139/large#1",
+    },
+    title: "울트라셀프",
+    author: [
+      {
+        id: 135603,
+        username: "이리앨",
+      },
+    ],
+    publisher: "다산북스",
+    genre: "성공/삶의자세",
+    price: {
+      buyPrice: 10710,
+      discountPercent: 10,
+    },
+    starRate: {
+      score: 100,
+      participantCount: 2,
+    },
+  },
+  {
+    id: 111044661,
+    thumbnail: {
+      imgUrl: "https://img.ridicdn.net/cover/111044661/large#1",
+    },
+    title: "신의 왼손 세트",
+    author: [
+      {
+        id: 135678,
+        username: "폴 호프먼",
+      },
+    ],
+    publisher: "문학동네",
+    genre: "해외 판타지 소설",
+    price: {
+      buyPrice: 28080,
+      discountPercent: 10,
+    },
+    starRate: {
+      score: 0,
+      participantCount: 0,
+    },
+    setBook: 3,
+  },
+  {
+    id: 152000098,
+    thumbnail: {
+      imgUrl: "https://img.ridicdn.net/cover/152000098/large#1",
+    },
+    title: "치매에서의 자유",
+    author: [
+      {
+        username: "안드레아스 모리츠",
+      },
+    ],
+    publisher: "에디터(유)",
+    genre: "건강",
+    price: {
+      buyPrice: 12600,
+    },
+    starRate: {
+      score: 0,
+      participantCount: 0,
+    },
   },
 ];
