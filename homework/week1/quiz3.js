@@ -29,10 +29,9 @@
   ”결과값이 없습니다“ ( 값 없음 )
 */
 const arrCheck = (arr, num) => {
-  const resultArr = arr.reduce((acc, cur) => {
-    acc.push(cur + 10);
-    return acc;
-  },[]) 
+  const resultArr = arr.map((index) => {
+    return index + 10;
+  });
 
   const index = resultArr.indexOf(num);
   if (index < 0) return "결과값이 없습니다.";
