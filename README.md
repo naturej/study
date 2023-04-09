@@ -6,7 +6,7 @@
 
 ### notion 주소
 
-https://www.notion.so/naturej/3cffc42d84c04700a556766bb29cf1ed
+https://naturej.notion.site/3cffc42d84c04700a556766bb29cf1ed
 
 ## 1주차 과제
 
