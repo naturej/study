@@ -1,17 +1,58 @@
 import data from "./db.js";
 
 const siteUrl = "https://ridibooks.com";
+const limit = 5;
+const $bookList = document.getElementById("book-list");
 
-let pages = [];
 let currentPage = 1;
-let limit = 5;
+let pages = data.slice(0, limit);
+let bookListHTML = "";
 
-for (let i = 0; i < limit; i++) {
-  pages.push(data[i]);
+renderBook(pages);
+
+/**
+ * 렌더링 함수
+ * 도서 리스트에 변화가 있을 경우 도서 리스트를 재렌더링 해줍니다.
+ * @param {book[]} pages
+ */
+function renderBook(pages) {
+  //bookListHTML은 pages(book[])를 각각(map) 랜더링할 문자열로 변환(bookInfo) 후 합친(join) 결과
+  bookListHTML = pages.map((book) => bookInfo(book)).join("");
+  $bookList.innerHTML = bookListHTML;
+
+  // 위시리스트 추가
+  const btnWishes = document.querySelectorAll(".btn-wish");
+
+  for (let btnWish of btnWishes) {
+    btnWish.addEventListener("click", function (event) {
+      event.stopPropagation();
+
+      const isUserWish = this.dataset["isUserWish"];
+      const targetId = this.dataset["id"];
+      const targetBook = pages.find((book) => book.id.toString() === targetId);
+      const index = pages.findIndex((book) => book.id.toString() === targetId);
+
+      // ...
+      // 백엔드 통신
+      // ...
+      // 성공 하면
+      // ...
+
+      isUserWish === "Y"
+        ? pages.splice(index, 1, { ...targetBook, isUserWish: "N" })
+        : pages.splice(index, 1, { ...targetBook, isUserWish: "Y" });
+      renderBook(pages);
+    });
+  }
 }
 
-let bookListHTML = pages.map((book) => bookInfo(book)).join("");
-
+/**
+ * 도서의 작가 리스트를 입력받아 a태그로 감싸고 합쳐서 문자열로 반환하는 함수.
+ * 작가 ID가 있을 경우 작가 안내 페이지, 없으면 작가 검색 결과로 링크를 연결해주고,
+ * 작가가 2명 이상일 경우 그 외 n명로 표시해줍니다.
+ * @param {[{[id],username}]} author
+ * @returns {string}
+ */
 function authorInfo(authors) {
   const etc = authors.length - 2;
   const str = authors
@@ -27,34 +68,44 @@ function authorInfo(authors) {
   return `<span class="">${str} ${etc > 0 ? `외 ${etc}명` : ``}</span>`;
 }
 
+/**
+ * 숫자를 입력받아 숫자 3자리마다(천단위) 콤마(,)를 찍어서 문자열로 반환해주는 함수
+ * @param {number} price
+ * @returns {string}
+ */
 function priceComma(price) {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+/**
+ * book 객체를 입력 받아 랜더링할 문자열로 반환해주는 함수
+ * @param {{}} book
+ * @returns {string}
+ */
 function bookInfo(book) {
   return `
   <li>
-      <div class="book" data-id="${book.id}">
-        <div class="thumbnail-wrap">
-          <div class="thumbnail relative">
+      <div class="book flex md:block" data-id="${book.id}">
+        <div class="thumbnail-wrap h-auto md:h-48 flex items-end">
+          <div class="thumbnail relative w-28 md:w-full">
             <a href="${siteUrl}/books/${book.id}">
               ${
                 book.setBook
-                  ? `<div class="absolute bottom-12 left-0 right-0 shadow-sm shadow-gray-500 flex justify-center bg-white set-book">${book.setBook}권 세트</div>`
+                  ? `<div class="set-book absolute bottom-12 left-0 right-0 h-5 shadow-sm shadow-gray-500 flex justify-center bg-white text-sm">${book.setBook}권 세트</div>`
                   : ``
               }
               <img class="shadow-sm shadow-gray-400" src="${
                 book.thumbnail.imgUrl
-              }" alt="${book.name} 표지 이미지" />
-              </a>
-              <div class="absolute p-1 left-0 top-0 w-8 h-8">
-                <input type="checkbox" data-id="${
-                  book.id
-                }" class="checkbox shadow-sm bg-gray-100 shadow-gray-500 w-4 h-4" />
-              </div>
-              <div data-id="${
+              }" alt="${book.title} 표지 이미지" />
+            </a>
+            <div class="absolute p-1 left-0 top-0 w-8 h-8">
+              <input type="checkbox" data-id="${
                 book.id
-              }" class="btn-wish absolute p-1 items-center right-1 top-1 w-8 h-8 bg-white rounded-full cursor-pointer">
+              }" class="checkbox shadow-sm bg-gray-100 shadow-gray-500 w-4 h-4" />
+            </div>
+            <div data-id="${book.id}" data-is-user-wish="${
+    book.isUserWish
+  }" class="btn-wish absolute p-1 items-center right-1 top-1 w-8 h-8 bg-white rounded-full cursor-pointer">
               <svg class="absolute" fill="${
                 book.isUserWish === "Y" ? `tomato` : `none`
               }" stroke="${
@@ -65,8 +116,8 @@ function bookInfo(book) {
               </div>
             </div>
           </div>
-          <div class="info">
-              <div class="title mt-2 text-sm tracking-tight line-clamp-2"><a class="hover:underline underline-offset-1" href="${siteUrl}/books/${
+          <div class="info w-full px-4 py-0 md:p-0">
+              <div class="title md:mt-2 text-sm tracking-tight line-clamp-2"><a class="hover:underline underline-offset-1" href="${siteUrl}/books/${
     book.id
   }">${book.title}</a></div>
               <div class="author text-slate-500 text-xs mt-1">${authorInfo(
@@ -84,12 +135,13 @@ function bookInfo(book) {
                     : ``
                 }
               </div>
-              <div class="publisher hidden"><a class="text-slate-500 text-xs" href="${siteUrl}/search?q=${
+              <div>
+              <div class="publisher inline-block md:hidden"><a class="text-slate-500 text-xs" href="${siteUrl}/search?q=${
     book.publisher
   }">${book.publisher}</a></div>
-              <div class="genre text-slate-500 text-xs hidden">${
+              <div class="genre inline-block md:hidden"><span class="text-slate-500 text-xs">${
                 book.genre
-              }</div>
+              }</span></div></div>
               <div class="price">
                   ${
                     book.price.rentalPrice
@@ -112,40 +164,20 @@ function bookInfo(book) {
   `;
 }
 
-const $bookList = document.getElementById("book-list");
-$bookList.innerHTML = bookListHTML;
-
-// 더보기 버튼
+// 더보기 버튼 클릭 시 리스트 더불러오기
 document.getElementById("btn-more").addEventListener("click", function (event) {
   for (let i = 0; i < limit; i++) {
-    let j = i + currentPage * limit;
+    let currentIndex = i + currentPage * limit;
+    pages.push(data[currentIndex]); // 현재 배열에 붙이기
+
     // data 마지막에 오면
-    if (j > data.length - 1) {
+    if (currentIndex >= data.length - 1) {
       event.target.style.display = "none"; // 더보기 버튼 가리기
-    } else {
-      pages.push(data[j]); // 현재 배열에 붙이기
+      break; // 반복문 탈출
     }
   }
-  bookListHTML = pages.map((book) => bookInfo(book)).join("");
-  $bookList.innerHTML = bookListHTML;
+  renderBook(pages);
   currentPage++;
-});
-
-// 위시리스트 추가
-// TODO: 한 번 리스트 업데이트하고 난 뒤에는 이벤트 핸들러가 동작하지 않는 이슈 수정
-document.querySelectorAll(".btn-wish").forEach((btnWish) => {
-  btnWish.addEventListener("click", function (event) {
-    console.log("클릭");
-    event.stopPropagation();
-    const targetId = this.dataset["id"];
-    const targetBook = pages.find((book) => book.id.toString() === targetId);
-    const index = pages.findIndex((book) => book.id.toString() === targetId);
-
-    pages.splice(index, 1, { ...targetBook, isUserWish: "Y" });
-    console.log(pages);
-    bookListHTML = pages.map((book) => bookInfo(book)).join("");
-    $bookList.innerHTML = bookListHTML;
-  });
 });
 
 // 삭제 버튼 클릭 시 리스트에서 제거
@@ -157,9 +189,10 @@ document.getElementById("btn-delete").addEventListener("click", function () {
     alert("체크박스를 선택해주세요.");
     return;
   }
-  checkedList.forEach((el) => {
-    ids.push(el.dataset["id"]);
-  });
+
+  for (let checkbox of checkedList) {
+    ids.push(checkbox.dataset["id"]);
+  }
 
   // ...
   // 백엔드 통신
@@ -171,6 +204,5 @@ document.getElementById("btn-delete").addEventListener("click", function () {
     return ids.indexOf(book.id.toString()) < 0;
   });
 
-  bookListHTML = pages.map((book) => bookInfo(book)).join("");
-  $bookList.innerHTML = bookListHTML;
+  renderBook(pages);
 });

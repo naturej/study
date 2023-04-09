@@ -10,19 +10,24 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <div class="book-list-wrap mt-20 mx-auto">
-      <h2 class="mb-6 text-xl font-semibold">일반도서 신간</h2>
-      <div class="p-6">
+    <div class="book-list-wrap md:mt-20 mx-auto">
+      <h2 class="p-6 md:mb-6 text-xl font-semibold text-center mb:text-left">
+        일반도서 신간
+      </h2>
+      <div class="p-6 pt-0 md:p-6">
         <div class="btn-list flex justify-end mb-5">
           <button
-            class="bg-transparent hover:bg-slate-50 text-sm text-slate-600 mx-1 py-1 px-2 border border-slate-300 rounded"
+            class="bg-transparent hover:bg-slate-50 text-sm text-slate-600 py-1 px-2 border border-slate-300 rounded"
             type="button"
             id="btn-delete"
           >
             삭제
           </button>
         </div>
-        <ul id="book-list" class="grid grid-cols-5 gap-x-20 gap-y-12">
+        <ul
+          id="book-list"
+          class="grid grid-cols-1 md:grid-cols-5 gap-x-20 gap-y-8 md:gap-y-12"
+        >
           <!-- book list -->
         </ul>
         <div class="flex justify-center mt-10">

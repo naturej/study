@@ -20,6 +20,7 @@ export default [
       score: 88,
       participantCount: 5,
     },
+    isUserWish: "N",
   },
   {
     id: 754037675,
@@ -43,6 +44,7 @@ export default [
       score: 100,
       participantCount: 2,
     },
+    isUserWish: "N",
   },
   {
     id: 593001019,
@@ -66,6 +68,7 @@ export default [
       score: 0,
       participantCount: 0,
     },
+    isUserWish: "N",
   },
   {
     id: 5148000002,
@@ -91,6 +94,7 @@ export default [
       score: 100,
       participantCount: 1,
     },
+    isUserWish: "N",
   },
   {
     id: 111044700,
@@ -143,6 +147,7 @@ export default [
       participantCount: 0,
     },
     setBook: 9,
+    isUserWish: "N",
   },
   {
     id: 852001634,
@@ -165,6 +170,7 @@ export default [
       score: 100,
       participantCount: 1,
     },
+    isUserWish: "N",
   },
   {
     id: 1546001056,
@@ -187,6 +193,7 @@ export default [
       score: 100,
       participantCount: 2,
     },
+    isUserWish: "N",
   },
   {
     id: 4671000015,
@@ -208,6 +215,7 @@ export default [
       score: 100,
       participantCount: 1,
     },
+    isUserWish: "N",
   },
   {
     id: 4139000055,
@@ -229,6 +237,7 @@ export default [
       score: 0,
       participantCount: 0,
     },
+    isUserWish: "N",
   },
   {
     id: 4803002139,
@@ -252,6 +261,7 @@ export default [
       score: 100,
       participantCount: 2,
     },
+    isUserWish: "N",
   },
   {
     id: 111044661,
@@ -276,6 +286,7 @@ export default [
       participantCount: 0,
     },
     setBook: 3,
+    isUserWish: "N",
   },
   {
     id: 152000098,
@@ -297,5 +308,6 @@ export default [
       score: 0,
       participantCount: 0,
     },
+    isUserWish: "N",
   },
 ];
