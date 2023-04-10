@@ -8,11 +8,10 @@
 */
 
 function division(arr, len) {
-  let result = []
-  for(let i = 0; i< arr.length; i += len) {
-    result.push(arr.slice(i, i + len));
-  }
-  return result;
+  return arr.reduce((acc, cur, index) => {
+    if(index % len === 0) acc.push(arr.slice(index, index + len));
+    return acc;
+  }, []);
 }
 
 const arr = Array(80).fill().map((el, index) => index + 1);
