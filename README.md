@@ -42,3 +42,20 @@ https://naturej.notion.site/3cffc42d84c04700a556766bb29cf1ed
    - 수정 : `위시리스트` 버튼 클릭 시 위시리스트에 담기고 아이콘 변경 기능
 
 4. 테스트 주소 : https://naturej.github.io/study/homework/week2/serverData/index.html
+
+## 3주차 과제
+
+### 전체 과제
+
+- [로또 번호 생성기](https://github.com/naturej/study/blob/master/homework/week3/js/lotto.js)
+- [무한 슬라이드 배너 구현하기](https://naturej.github.io/study/homework/week3/banner/banner.html)
+
+### 자바스크립트 문제 풀이
+
+- [LV1. 계좌 번호 파싱 하기](https://naturej.github.io/study/homework/week3/js/level1/level1.html)
+- [LV2. 예약번호 확인 하기](https://naturej.github.io/study/homework/week3/js/level2/level2.html)
+- [LV3. 레시피 추가 및 삭제 하기](https://naturej.github.io/study/homework/week3/js/level3/level3.html)
+
+### DOM API 문제 풀이
+
+- [DOM.html](https://naturej.github.io/study/homework/week3/dom/dom.html)
