@@ -1,0 +1,122 @@
+/*glboal*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*common*/
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*banner*/
+.banner-box {
+  width: 1080px;
+  border: 1px solid #000;
+  margin: 1rem auto;
+  overflow: hidden;
+}
+
+.banner-item {
+  min-width: 100%;
+  height: 300px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.banner-list > li[data-page="1"] {
+  background: #c9ffbf; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffafbd,
+    #c9ffbf
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffafbd,
+    #c9ffbf
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.banner-list > li[data-page="2"] {
+  background: #b993d6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #8ca6db,
+    #b993d6
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #8ca6db,
+    #b993d6
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.banner-list > li[data-page="3"] {
+  background: #3ca55c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #b5ac49,
+    #3ca55c
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #b5ac49,
+    #3ca55c
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/*shade*/
+#shade-banner > ul {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  background-color: #000;
+}
+
+#shade-banner > ul > li {
+  position: absolute;
+  transition: opacity 1s;
+}
+
+#shade-banner > ul > li[data-page="1"] {
+  z-index: 300;
+}
+
+#shade-banner > ul > li[data-page="2"] {
+  z-index: 200;
+  opacity: 0;
+}
+
+#shade-banner > ul > li[data-page="3"] {
+  z-index: 100;
+  opacity: 0;
+}
+
+/* slide */
+#slide-banner > ul {
+  width: 100%;
+  display: flex;
+  transition: transform 1s ease-in-out;
+  transform: translateX(-100%);
+}
+
+/* 자동 재생 켜졌을 때 */
+#slide-banner[data-auto-play="start"] .stop-btn {
+  display: inline;
+}
+#slide-banner[data-auto-play="start"] .play-btn {
+  display: none;
+}
+
+/* 자동 재생 꺼졌을 때 */
+#slide-banner[data-auto-play="end"] .stop-btn {
+  display: none;
+}
+#slide-banner[data-auto-play="end"] .play-btn {
+  display: inline;
+}

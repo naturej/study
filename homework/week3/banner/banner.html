@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="./shade.js"></script>
+    <script defer src="./slide.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Banner</h2>
+    <!--shade banner -->
+    <div id="shade-banner" class="banner-box">
+      <ul class="banner-list">
+        <li class="banner-item flex-center" data-page="1">🌷</li>
+        <li class="banner-item flex-center" data-page="2">🌹</li>
+        <li class="banner-item flex-center" data-page="3">🌻</li>
+      </ul>
+      <div>
+        <button class="shade-prev-btn">prev</button>
+        <button class="shade-next-btn">next</button>
+      </div>
+    </div>
+    <!-- slide banner-->
+    <div id="slide-banner" class="banner-box">
+      <ul class="banner-list" data-auto-play="start">
+        <li class="banner-item flex-center" data-page="1">🌷</li>
+        <li class="banner-item flex-center" data-page="2">🌹</li>
+        <li class="banner-item flex-center" data-page="3">🌻</li>
+      </ul>
+      <div>
+        <button class="slide-prev-btn">prev</button>
+        <button class="slide-next-btn">next</button>
+        <button class="stop-btn">정지</button>
+        <button class="play-btn">재생</button>
+      </div>
+    </div>
+    <marquee>🐝 { 안녕하세요 )</marquee>
+  </body>
+</html>
