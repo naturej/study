@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      #list {
+        border: 1px solid #ededed;
+      }
+
+      .liClass > button {
+        margin: 0 1px;
+      }
+
+      .edit-hidden {
+        display: inline;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .liClass.edit-mode > .edit-hidden {
+        display: none;
+      }
+
+      .liClass.edit-mode > .hidden {
+        display: inline;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      4. 아래의 입력창에 숫자가 입력되지 않도록 하고 길이 제한은 10자로 하시오.
+      <br />숫자가 입력된다면 숫자가 입력되었다고 alert로 알려주시오
+    </p>
+    <input
+      type="text"
+      id="te_input"
+      maxlength="10"
+      placeholder="글자만 입력하세요."
+    />
+
+    <p>
+      5.아래의 입력창에 입력 후 저장 버튼을 누르거나 엔터키를 누르면 입력한
+      내용이 아래의 list에 추가 되도록 하시오. <br />
+      초기화 버튼을 누르면 list안의 모든 내용이 지워져야 함
+    </p>
+    <p>6.추가된 내용을 "각 각" 수정 및 삭제할 수 있게 변경하시오.</p>
+    <form id="form">
+      <input type="text" value="" width="600" id="list_data" name="content" />
+      <button type="submit" id="send" value="show_view">저장</button>
+      <button type="reset" id="reset">초기화</button>
+      <p>리스트</p>
+    </form>
+    <ul id="list">
+      <li class="liClass">
+        <span class="edit-hidden">list</span
+        ><input type="text" class="input-hidden hidden" value="list" /><button
+          type="button"
+          class="btn-modify edit-hidden"
+        >
+          수정</button
+        ><button type="button" class="btn-update hidden">완료</button
+        ><button type="button" class="btn-delete">삭제</button>
+      </li>
+      <li class="liClass">
+        <span class="edit-hidden">list</span
+        ><input type="text" class="input-hidden hidden" value="list" /><button
+          type="button"
+          class="btn-modify edit-hidden"
+        >
+          수정</button
+        ><button type="button" class="btn-update hidden">완료</button
+        ><button type="button" class="btn-delete">삭제</button>
+      </li>
+    </ul>
+  </body>
+  <script>
+    const numberRegExp = /[0-9]/;
+    // 4. 아래의 입력창에 숫자가 입력되지 않도록 하고 길이 제한은 10자로 하시오. <br />숫자가 입력된다면 숫자가 입력되었다고 alert로 알려주시오
+    const $inputText = document.getElementById("te_input");
+    $inputText.addEventListener("keyup", (event) => {
+      if (numberRegExp.test(event.target.value)) {
+        alert("숫자가 입력되었습니다.");
+        event.target.value = event.target.value.replace(/[0-9]/, ""); // 숫자 지우기
+      }
+    });
+
+    // ----------------------------------------------------------
+    // 5.아래의 입력창에 입력 후 저장 버튼을 누르거나 엔터키를 누르면 입력한 내용이 아래의 list에 추가 되도록 하시오.
+    // 초기화 버튼을 누르면 list안의 모든 내용이 지워져야 함
+    // 6.추가된 내용을 "각 각" 수정 및 삭제 수 있게 변경하시오.
+
+    const $listData = document.getElementById("list_data");
+    const $list = document.getElementById("list");
+    const $btnSubmit = document.getElementById("send");
+    const $btnReset = document.getElementById("reset");
+    const $inputList = document.querySelectorAll(".input-hidden");
+    const $btnModifyList = document.querySelectorAll(".btn-modify");
+    const $btnUpdateList = document.querySelectorAll(".btn-update");
+    const $btnDeleteList = document.querySelectorAll(".btn-delete");
+
+    for (let $input of $inputList) {
+      $input.addEventListener("keydown", (event) => {
+        if (event.keyCode === 13) {
+          updateList(event);
+        }
+      });
+    }
+    for (let $btnModify of $btnModifyList) {
+      $btnModify.addEventListener("click", modifyList);
+    }
+    for (let $btnUpdate of $btnUpdateList) {
+      $btnUpdate.addEventListener("click", updateList);
+    }
+    for (let $btnDelete of $btnDeleteList) {
+      $btnDelete.addEventListener("click", deleteList);
+    }
+
+    // 저장 버튼 클릭 시
+    $btnSubmit.addEventListener("click", (event) => {
+      event.preventDefault();
+      addTodoList();
+    });
+
+    // 엔터 입력 시
+    $listData.addEventListener("keydown", (event) => {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        addTodoList();
+      }
+    });
+
+    // 초기화 버튼
+    $btnReset.addEventListener("click", (event) => {
+      $list.innerHTML = "";
+    });
+
+    // 리스트 추가
+    function addTodoList() {
+      if (!$listData.value) return alert("내용을 입력하세요.");
+
+      let $span = document.createElement("span");
+      $span.classList.add("edit-hidden");
+      $span.innerText = $listData.value;
+
+      let $input = document.createElement("input");
+      $input.classList.add("hidden");
+      $input.value = $listData.value;
+      $input.addEventListener("keydown", (event) => {
+        if (event.keyCode === 13) {
+          updateList(event);
+        }
+      });
+
+      let $btnModify = document.createElement("button");
+      $btnModify.classList.add("btn-modify");
+      $btnModify.classList.add("edit-hidden");
+      $btnModify.innerText = "수정";
+      $btnModify.addEventListener("click", modifyList);
+
+      let $btnUpdate = document.createElement("button");
+      $btnUpdate.classList.add("btn-update");
+      $btnUpdate.classList.add("hidden");
+      $btnUpdate.innerText = "완료";
+      $btnUpdate.addEventListener("click", updateList);
+
+      let $btnDelete = document.createElement("button");
+      $btnDelete.classList.add("btn-modify");
+      $btnDelete.innerText = "삭제";
+      $btnDelete.addEventListener("click", deleteList);
+
+      let $li = document.createElement("li");
+      $li.classList.add("liClass");
+
+      $li.appendChild($span);
+      $li.appendChild($input);
+      $li.appendChild($btnModify);
+      $li.appendChild($btnUpdate);
+      $li.appendChild($btnDelete);
+
+      $list.appendChild($li);
+
+      $listData.value = ""; // input 입력된 값은 지우기
+    }
+
+    // 수정
+    function modifyList(event) {
+      event.preventDefault();
+      const $target = event.target.parentElement;
+      $target.classList.add("edit-mode");
+    }
+
+    // 수정 완료
+    function updateList(event) {
+      event.preventDefault();
+      const $target = event.target.parentElement;
+      const $span = $target.firstElementChild;
+      const $input = $span.nextElementSibling;
+
+      if ($input.value === "") return alert("내용을 입력하세요.");
+
+      $span.innerText = $input.value;
+      $target.classList.remove("edit-mode");
+    }
+
+    // 삭제
+    function deleteList(event) {
+      event.preventDefault();
+      const $target = event.target.parentElement;
+      $target.remove();
+    }
+  </script>
+</html>
