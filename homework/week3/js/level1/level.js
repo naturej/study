@@ -12,18 +12,15 @@ const $inputAccount = document.getElementById("account-input");
 const $accountList = document.getElementById("account-list");
 const $btnSubmit = document.getElementById("btn-submit");
 
-const bankList = Object.values(BANK_LIST);
-const accountForm = Object.values(ACCOUNT_FORM);
-
 // select box 세팅
-bankList.forEach((el, index) => {
+for (let index in BANK_LIST) {
   let option = document.createElement("option");
   option.value = index;
-  option.text = el;
-  option.dataset["format"] = accountForm[index];
+  option.text = BANK_LIST[index];
+  option.dataset["format"] = ACCOUNT_FORM[index];
 
   $bankSelector.appendChild(option);
-});
+}
 $bankSelector.options[0].selected = true;
 
 // 제출 버튼 클릭 시
