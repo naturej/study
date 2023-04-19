@@ -59,3 +59,19 @@ https://naturej.notion.site/3cffc42d84c04700a556766bb29cf1ed
 ### DOM API 문제 풀이
 
 - [DOM.html](https://naturej.github.io/study/homework/week3/dom/dom.html)
+
+## 4주차 과제
+
+### 전체 과제
+
+- [JSONPlaceholder API로 게시판 구현하기](https://naturej.github.io/study/homework/week4/JSONPlaceholder/board/list.html)
+
+### 심화 과제
+
+- [Playlist (disk 문제 💿)](https://naturej.github.io/study/homework/week4/disk/disk.html)
+
+### 자바스크립트 문제 풀이
+
+- [Promise 문제 1](https://github.com/naturej/study/blob/master/homework/week4/js/promise/quiz1.js)
+- [Promise 문제 2](https://github.com/naturej/study/blob/master/homework/week4/js/promise/quiz2.js)
+- [Promise 문제 3](https://github.com/naturej/study/blob/master/homework/week4/js/promise/quiz3.js)
