@@ -10,25 +10,27 @@
     max size    
     이번주 목표까지 15% 남았습니다
 */
+const delayTime = 700;
 const condition = true;
 
-console.log('min size');
+console.log("min size");
 
 const printMessage = async () => {
   try {
-    const result = await new Promise((resolve, reject) => {
-      if(condition) {
-        setTimeout(()=>{
-          console.log('max size');
+    const percent = await new Promise((resolve, reject) => {
+      if (condition) {
+        setTimeout(() => {
+          console.log("max size");
           resolve(15);
-        },700)
+        }, delayTime);
       } else {
         reject("error");
       }
     });
-    console.log(`이번주 목표까지 ${result}% 남았습니다`);
-  } catch(error) {
+    console.log(`이번주 목표까지 ${percent}% 남았습니다`);
+  } catch (error) {
     console.error(error);
   }
-}
+};
+
 printMessage();
