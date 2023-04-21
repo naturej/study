@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="./index.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style.css">
+    <title>Q2</title>
+  </head>
+  <body>
+    <div id="app" class="bg-white mx-auto">
+      <header class="p-3 bg-white border-b border-solid border-red-200">
+        <nav class="grid align-center">
+          <div class="logo text-xl font-bold text-red-500">LOGO</div>
+          <div class="search-bar w-full h-8 bg-zinc-200 rounded-full"></div>
+        </nav>
+      </header>
+      <ul id="post-list">
+        <!-- post-list -->
+      </ul>
+      <div class="page-bottom">
+        <div id="pagination" class="flex justify-center gap-0.5">
+          <span class="beginLabel">처음</span>
+          <span class="prevLabel">이전</span>
+          <ul id="page-list">
+            <!--page list-->
+          </ul>
+          <span class="nextLabel">다음</span>
+          <span class="endLabel">끝</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
