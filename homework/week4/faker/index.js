@@ -54,7 +54,7 @@ const postInfo = (post) => `
           </div>
         </div>
         <h4 class="post-title font-semibold pb-2">${post.title}</h4>
-        <div class="post-content font-thin">${post.content}</div>
+        <div class="post-content font-light">${post.content}</div>
         <button class="btn-toggle-comment mt-2 text-zinc-700 tracking-tight">댓글 보기</button>
       </div>
       <div class="comment-wrap">
@@ -94,7 +94,7 @@ const commentInfo = (comments) => {
         <p class="text-zinc-500 leading-none text-sm">${
           comment.User.nickName
         }</p>
-        <div class="reply-content pt-1 pb-2 text-zinc-800 leading-tight font-normal">${
+        <div class="reply-content pt-1 pb-2 text-zinc-800 leading-tight font-light">${
           comment.content
         }</div>
         <div class="reply-date text-xs text-zinc-400">${convertDate(
@@ -185,3 +185,12 @@ for (let label of $labels) {
   let page = Number(label.dataset.page);
   label.addEventListener("click", () => movePage(page));
 }
+
+/** ==================================================
+ *  CRUD
+ *  C - 게시글, 댓글 작성
+ *  R - 게시글, 댓글 조회
+ *  U - 게시글, 댓글 수정
+ *  D - 게시글, 댓글 삭제
+ *  ==================================================
+ */
