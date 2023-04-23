@@ -23,3 +23,22 @@ nav {
   min-width: 48px;
   min-height: 48px;
 }
+
+#dimmed-layer {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#write-page {
+  top: 100%;
+  transition: top 0.5s ease-in-out;
+}
+
+input,
+textarea {
+  outline: none;
+  resize: none;
+}
+
+#content {
+  min-height: 300px;
+}

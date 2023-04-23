@@ -1,6 +1,6 @@
-import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
+import { faker } from "https://cdn.skypack.dev/@faker-js/faker";
 
-const randomId = {
+export const randomId = {
   generate() {
     return Math.floor(Math.random() * 100000 + 1);
   },
@@ -33,9 +33,15 @@ export const MockPosts = (count) =>
               profileImg: faker.image.avatar(),
             },
             myComment: false,
-            createdAt: faker.date.between('2023-01-01T00:00:00.000Z', '2023-01-31T00:00:00.000Z'),
+            createdAt: faker.date.between(
+              "2023-01-15T00:00:00.000Z",
+              "2023-01-31T00:00:00.000Z"
+            ),
           };
         }),
-      createdAt: faker.date.between('2023-01-01T00:00:00.000Z', '2023-01-31T00:00:00.000Z'),
+      createdAt: faker.date.between(
+        "2023-01-01T00:00:00.000Z",
+        "2023-01-15T00:00:00.000Z"
+      ),
       myPost: false,
     }));

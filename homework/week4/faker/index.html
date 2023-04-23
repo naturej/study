@@ -11,13 +11,31 @@
     <title>Faker board</title>
   </head>
   <body>
-    <div id="app" class="bg-white mx-auto">
+    <div id="app" class="bg-white mx-auto relative overflow-hidden">
       <header class="p-3 bg-white border-b border-solid border-zinc-200">
         <nav class="grid align-center">
           <div class="logo text-xl font-bold text-red-500">
             <a href="./index.html" class="leading-10">LOGO</a>
           </div>
           <div class="search-bar w-full h-10 bg-zinc-200 rounded-full"></div>
+          <div
+            id="btn-write"
+            class="btn-write flex items-center justify-end pr-2 cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="w-6 h-6 fill-red-500"
+            >
+              <path
+                d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32l8.4-8.4z"
+              />
+              <path
+                d="M5.25 5.25a3 3 0 00-3 3v10.5a3 3 0 003 3h10.5a3 3 0 003-3V13.5a.75.75 0 00-1.5 0v5.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5V8.25a1.5 1.5 0 011.5-1.5h5.25a.75.75 0 000-1.5H5.25z"
+              />
+            </svg>
+          </div>
         </nav>
       </header>
       <ul id="post-list">
@@ -176,6 +194,54 @@
             </svg>
           </span>
         </div>
+      </div>
+      <div
+        id="dimmed-layer"
+        class="w-full h-full z-40 absolute left-0 top-0 hidden"
+      ></div>
+      <div id="write-page" class="w-full h-full z-50 absolute left-0 bg-white">
+        <form action="">
+          <div
+            class="flex justify-between px-5 py-3 border-b border-solid border-zinc-200"
+          >
+            <button type="button" id="btn-cancel" class="leading-10">
+              취소
+            </button>
+            <button type="button" id="btn-submit" class="leading-10">
+              등록
+            </button>
+            <button type="button" id="btn-update" class="leading-10 hidden">
+              수정
+            </button>
+          </div>
+          <div class="p-6 pb-0 flex items-center">
+            <div class="post-user-profile mr-4">
+              <img
+                id="write-user-image"
+                class="w-12 h-12 bg-gray-100 rounded-full"
+                src=""
+              />
+            </div>
+            <div class="post-user-info">
+              <p id="write-user-nick" class="text-base"></p>
+            </div>
+          </div>
+          <div class="form-area p-6">
+            <input
+              id="title"
+              class="py-2.5 px-0 w-full font-bold text-lg text-gray-900 bg-transparent"
+              name="title"
+              type="text"
+              placeholder="제목을 입력해주세요."
+            />
+            <textarea
+              name="content"
+              id="content"
+              class="w-full pt-2"
+              placeholder="내용을 입력해주세요."
+            ></textarea>
+          </div>
+        </form>
       </div>
     </div>
   </body>
