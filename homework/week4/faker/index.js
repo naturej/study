@@ -295,6 +295,7 @@ function renderPost(posts) {
     btn.addEventListener("click", function (event) {
       event.preventDefault();
       const textarea = event.target.parentNode.children[0].children[1];
+      if (textarea.value === "") return alert("댓글 내용을 입력해주세요.");
       const submitComment = {
         id: randomId.generate(),
         content: textarea.value,
@@ -379,6 +380,7 @@ function renderComment(post) {
       event.preventDefault();
       const editTxt =
         event.target.parentNode.parentNode.children[1].children[0].value;
+      if (editTxt === "") return alert("댓글 내용을 입력해주세요.");
       const commentId = Number(event.target.dataset.commentId);
       const postId = Number(event.target.dataset.postId);
       const post = posts.find((post) => post.id === postId);
@@ -492,6 +494,8 @@ function deletePost(postId) {
 function updatePost(editPost) {
   const $title = document.getElementById("title");
   const $content = document.getElementById("content");
+  if ($title.value === "") return alert("제목을 입력해주세요.");
+  if ($content.value === "") return alert("내용을 입력해주세요.");
   editPost.title = $title.value;
   editPost.content = $content.value;
   closePost();
@@ -511,6 +515,8 @@ $btnCancel.addEventListener("click", (event) => {
  */
 $btnSubmit.addEventListener("click", (event) => {
   event.preventDefault();
+  if ($title.value === "") return alert("제목을 입력해주세요.");
+  if ($content.value === "") return alert("내용을 입력해주세요.");
   const post = {
     id: randomId.generate(),
     title: $title.value,
