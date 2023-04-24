@@ -18,7 +18,7 @@ export const MockPosts = (count) =>
         nickName: faker.name.firstName(),
         profileImg: faker.image.avatar(),
       },
-      Post_img: Array(Math.floor(Math.random() * 3) + 0)
+      Post_img: Array(Math.floor(Math.random() * 4) + 0)
         .fill()
         .map(() => faker.image.image()),
       Comments: Array(Math.floor(Math.random() * 5) + 1)
