@@ -119,19 +119,26 @@ const commentInfo = (postId, comments) => {
           comment.User.profileImg
         }" />
       </div>
-      <div class="comment-info">
+      <div class="comment-info w-full">
         <p class="text-zinc-500 leading-none text-sm">${
           comment.User.nickName
         }</p>
-        <div class="reply-content pt-1 pb-2 text-zinc-800 leading-tight font-light">${
+        <div class="hidden py-2 px-4 w-full bg-white rounded-lg rounded-t-lg border border-gray-200">
+          <textarea class="w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none">${
+            comment.content
+          }</textarea>
+        </div>
+        <div class="edit-hidden reply-content pt-1 pb-2 text-zinc-800 leading-tight font-light">${
           comment.content
         }</div>
         ${
           comment.myComment
             ? `
         <div class="leading-4">
-          <button type="button" data-comment-id="${comment.id}" data-post-id="${postId}" class="btn-comment-update text-xs text-zinc-500">수정</button>
-          <button type="button" data-comment-id="${comment.id}" data-post-id="${postId}" class="btn-comment-delete text-xs text-zinc-500">삭제</button>
+          <button type="button" data-comment-id="${comment.id}" data-post-id="${postId}" class="edit-hidden btn-comment-edit text-xs text-zinc-500">수정</button>
+          <button type="button" data-comment-id="${comment.id}" data-post-id="${postId}" class="edit-hidden btn-comment-delete text-xs text-zinc-500">삭제</button>
+          <button type="button" data-comment-id="${comment.id}" data-post-id="${postId}" class="hidden btn-comment-cancel text-xs text-zinc-500">취소</button>
+          <button type="button" data-comment-id="${comment.id}" data-post-id="${postId}" class="hidden btn-comment-update text-xs text-zinc-500">완료</button>
         </div>
         `
             : ``
@@ -192,7 +199,7 @@ function renderPost(posts) {
         ? $commentWrap.children[0].clientHeight +
           $commentWrap.children[1].clientHeight
         : $commentWrap.children[0].clientHeight;
-      console.log(event.target);
+
       if (event.target.classList.contains("opened")) {
         event.target.classList.remove("opened");
         event.target.innerHTML = "댓글 보기";
@@ -259,13 +266,47 @@ function renderComment(post) {
     });
   }
 
+  const $btnCommentEdit = document.querySelectorAll(".btn-comment-edit");
+  for (let btn of $btnCommentEdit) {
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.target.parentNode.parentNode.classList.add("edit-mode");
+      $commentWrap.style.height = `auto`;
+      setTimeout(() => {
+        const commentListHeight = $commentWrap.clientHeight;
+        $commentWrap.style.height = `${commentListHeight}px`;
+      }, 1);
+    });
+  }
+
+  const $btnCommentCancel = document.querySelectorAll(".btn-comment-cancel");
+  for (let btn of $btnCommentCancel) {
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.target.parentNode.parentNode.classList.remove("edit-mode");
+      $commentWrap.style.height = `auto`;
+      setTimeout(() => {
+        const commentListHeight = $commentWrap.clientHeight;
+        $commentWrap.style.height = `${commentListHeight}px`;
+      }, 1);
+    });
+  }
+
   const $btnCommentUpdate = document.querySelectorAll(".btn-comment-update");
   for (let btn of $btnCommentUpdate) {
     btn.addEventListener("click", function (event) {
       event.preventDefault();
-      const replyContent =
-        event.target.parentNode.previousElementSibling.innerText;
-      console.log(replyContent);
+      const editTxt =
+        event.target.parentNode.parentNode.children[1].children[0].value;
+      const commentId = Number(event.target.dataset.commentId);
+      const postId = Number(event.target.dataset.postId);
+      const post = posts.find((post) => post.id === postId);
+      let comments = post.Comments;
+      const comment = comments.find((comment) => {
+        return comment.id === commentId;
+      });
+      comment.content = editTxt;
+      renderComment(post);
     });
   }
 }

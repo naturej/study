@@ -42,3 +42,10 @@ textarea {
 #content {
   min-height: 300px;
 }
+
+.edit-mode .hidden {
+  display: inline-block;
+}
+.edit-mode .edit-hidden {
+  display: none;
+}
