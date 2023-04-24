@@ -69,6 +69,7 @@ https://naturej.notion.site/3cffc42d84c04700a556766bb29cf1ed
 ### 심화 과제
 
 - [Playlist (disk 문제 💿)](https://naturej.github.io/study/homework/week4/disk/disk.html)
+- [백엔드 없이 게시판 구현하기](https://naturej.github.io/study/homework/week4/faker/index.html)
 
 ### 자바스크립트 문제 풀이
 
