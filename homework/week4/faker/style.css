@@ -13,6 +13,10 @@ nav {
   background-color: #fff;
 }
 
+.pic > div {
+  aspect-ratio: 4 / 3;
+}
+
 .comment-wrap {
   height: 0;
   overflow: hidden;
